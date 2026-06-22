@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanimozhi E — Full Stack Developer</title>
+<meta name="description" content="Portfolio of Kanimozhi E, B.Tech IT student and full stack developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#2F5D62;
+    --primary-deep:#214446;
+    --secondary:#D8C7B6;
+    --bg:#FAF8F4;
+    --accent:#A27C61;
+    --gold:#C9A66B;
+    --text:#1E1E1E;
+    --text-soft:#5b5750;
+    --card:#ffffff;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--gold);color:#fff;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    *{animation:none !important;}
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(250,248,244,0.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(47,93,98,0.08);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:23px;letter-spacing:.3px;color:var(--primary-deep);}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:36px;font-size:14px;font-weight:600;letter-spacing:.3px;}
+  .nav-links a{color:var(--text-soft);position:relative;padding:4px 0;}
+  .nav-links a:hover{color:var(--primary-deep);}
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--gold);transition:width .3s;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{background:var(--primary);color:#fff;padding:10px 22px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.3px;}
+  .nav-cta:hover{background:var(--primary-deep);}
+  .burger{display:none;}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:76px;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;z-index:0;}
+  .blob1{width:520px;height:520px;background:radial-gradient(circle,#6fa6a6 0%,transparent 70%);top:-160px;right:-120px;}
+  .blob2{width:420px;height:420px;background:radial-gradient(circle,var(--gold) 0%,transparent 70%);bottom:-140px;left:-100px;opacity:.35;}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;width:100%;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;}
+  .eyebrow::before{content:'';width:26px;height:1.5px;background:var(--accent);}
+  .hero h1{font-size:clamp(38px,5vw,60px);line-height:1.05;font-weight:600;color:var(--primary-deep);margin-bottom:10px;}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:500;}
+  .typewrap{font-size:clamp(18px,2.2vw,24px);color:var(--text-soft);font-weight:600;min-height:32px;margin-bottom:18px;}
+  .typewrap .cursor{display:inline-block;width:2px;background:var(--accent);margin-left:2px;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .hero p.lead{font-size:16px;color:var(--text-soft);max-width:460px;line-height:1.7;margin-bottom:30px;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{padding:14px 28px;border-radius:999px;font-weight:700;font-size:14px;letter-spacing:.3px;display:inline-flex;align-items:center;gap:8px;transition:transform .25s,box-shadow .25s;}
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 24px -10px rgba(47,93,98,.5);}
+  .btn-outline{border:1.5px solid var(--accent);color:var(--accent);}
+  .btn-outline:hover{background:var(--accent);color:#fff;transform:translateY(-3px);}
+
+  .photo-stage{position:relative;display:flex;justify-content:center;align-items:center;}
+  .boat-art{width:100%;max-width:480px;animation:float 7s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(33,68,70,.25));}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+  section{padding:110px 0;position:relative;}
+  .section-tag{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;}
+  .section-title{font-size:clamp(28px,3.4vw,40px);color:var(--primary-deep);font-weight:600;margin-bottom:18px;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start;}
+  .about-photo{border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,var(--secondary),var(--bg));padding:18px;}
+  .about-photo img{border-radius:12px;}
+  .about p{color:var(--text-soft);line-height:1.8;font-size:16px;margin-bottom:18px;}
+  .edu-item{border-left:2px solid var(--secondary);padding:6px 0 6px 18px;margin-bottom:14px;}
+  .edu-item h4{font-size:15px;font-weight:700;color:var(--primary-deep);}
+  .edu-item span{font-size:13px;color:var(--text-soft);}
+
+  /* WHY HIRE ME */
+  .why-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:30px;}
+  .why-card{background:var(--card);border:1px solid rgba(47,93,98,.1);border-radius:14px;padding:20px 14px;text-align:center;transition:transform .3s,box-shadow .3s;}
+  .why-card:hover{transform:translateY(-6px);box-shadow:0 16px 28px -16px rgba(47,93,98,.3);}
+  .why-card .mark{width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700;}
+  .why-card p{font-size:13.5px;font-weight:600;color:var(--text-soft);}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .skill-card{background:var(--card);border-radius:var(--radius);padding:26px 22px;border:1px solid rgba(47,93,98,.08);transition:transform .3s;}
+  .skill-card:hover{transform:translateY(-5px);}
+  .skill-card h4{font-size:14px;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);margin-bottom:14px;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{background:var(--bg);border:1px solid rgba(47,93,98,.12);padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--primary-deep);}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .proj-card{background:rgba(255,255,255,0.65);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.6);border-radius:var(--radius);padding:26px;box-shadow:0 18px 40px -28px rgba(47,93,98,.4);transition:transform .35s;}
+  .proj-card:hover{transform:translateY(-8px);}
+  .proj-year{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.5px;}
+  .proj-card h3{font-size:19px;margin:8px 0 10px;color:var(--primary-deep);}
+  .proj-card p{font-size:13.5px;color:var(--text-soft);line-height:1.7;margin-bottom:16px;min-height:84px;}
+
+  /* TIMELINE / ACHIEVEMENTS */
+  .ach-list{border-left:2px solid var(--secondary);padding-left:24px;}
+  .ach-item{position:relative;margin-bottom:20px;}
+  .ach-item::before{content:'';position:absolute;left:-30px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--gold);}
+  .ach-item h4{font-size:15px;font-weight:700;color:var(--primary-deep);}
+  .ach-item span{font-size:12.5px;color:var(--text-soft);}
+
+  .two-col{display:grid;grid-template-columns:1.3fr .7fr;gap:60px;}
+
+  .code-stats{display:flex;gap:16px;margin-top:8px;}
+  .stat-card{background:var(--card);border-radius:14px;padding:20px;flex:1;border:1px solid rgba(47,93,98,.08);text-align:center;}
+  .stat-card b{display:block;font-size:24px;color:var(--primary);font-family:'Fraunces',serif;}
+  .stat-card span{font-size:12.5px;color:var(--text-soft);}
+
+  /* CONTACT */
+  .contact{background:var(--primary-deep);color:#fff;border-radius:28px;padding:64px 48px;margin:0 32px;text-align:center;}
+  .contact .section-title{color:#fff;}
+  .contact p{color:rgba(255,255,255,.75);max-width:480px;margin:0 auto 30px;}
+  .contact-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
+  .contact-links a{border:1px solid rgba(255,255,255,.25);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;transition:background .25s;}
+  .contact-links a:hover{background:rgba(255,255,255,.12);}
+
+  footer{padding:36px 0;text-align:center;font-size:13px;color:var(--text-soft);}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero p.lead{margin-left:auto;margin-right:auto;}
+    .btn-row{justify-content:center;}
+    .photo-stage{margin-top:40px;}
+    .about-grid,.two-col{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .skills-grid{grid-template-columns:repeat(2,1fr);}
+    .proj-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .contact{margin:0 16px;padding:48px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Kanimozhi E<span></span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="Kanimozhi_E_Resume.pdf" download>Resume ↓</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <div class="eyebrow">Hi, I'm Kanimozhi E</div>
+      <h1>Full stack developer<br>building <em>scalable</em><br>experiences</h1>
+      <div class="typewrap"><span id="typed"></span><span class="cursor">&nbsp;</span></div>
+      <p class="lead">B.Tech IT student at Sri Eshwar College of Engineering, solving real problems with code — from IoT-based safety systems to sustainability apps — and sharpening my edge with 200+ LeetCode and 850+ Skill Rack problems.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="Kanimozhi_E_Resume.pdf" download>Download resume</a>
+        <a class="btn btn-outline" href="#contact">Hire me</a>
+      </div>
+    </div>
+    <div class="photo-stage reveal in">
+      <img class="boat-art" src="boat-wave-crop.png" alt="Watercolor wave and sailboat illustration">
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="about-photo">
+        <img src="kanimozhi-photo-treated.png" alt="Kanimozhi E">
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-tag">About me</div>
+      <h2 class="section-title">Crafting solutions with code</h2>
+      <p>I'm a Computer Science / IT undergraduate who enjoys turning everyday problems — unsafe ATMs, unmanaged waste, communication barriers — into working software. I care about clean logic as much as clean UI, and I'm currently building depth in data structures, algorithms, and full stack web development.</p>
+      <p>Outside of coursework, I compete in hackathons and project presentations, and I'm actively looking for internship and entry-level opportunities where I can contribute and keep learning fast.</p>
+      <div class="edu-item">
+        <h4>B.Tech (IT) — Sri Eshwar College of Engineering</h4>
+        <span>CGPA <b>8.41 ·</b></span>  <span> 2024 – 2028</span>
+      </div>
+      <div class="edu-item">
+        <h4>HSC — Shri Ganga Higher Secondary School</h4>
+        <span><b>94.5% ·</b> 2023 – 2024</span>
+      </div>
+      <div class="edu-item">
+        <h4>SSLC — Shri Ganga Matriculation School</h4>
+        <span><b>94.8% ·</b> 2021 – 2022</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:90px;">
+    <div class="section-tag reveal">Why hire me</div>
+    <h2 class="section-title reveal">What I bring to a team</h2>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="mark">✓</div><p>Problem solver</p></div>
+      <div class="why-card reveal"><div class="mark">✓</div><p>Fast learner</p></div>
+      <div class="why-card reveal"><div class="mark">✓</div><p>Team player</p></div>
+      <div class="why-card reveal"><div class="mark">✓</div><p>Strong in DSA</p></div>
+      <div class="why-card reveal"><div class="mark">✓</div><p>Full stack curious</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-tag reveal">Skills</div>
+    <h2 class="section-title reveal">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h4>Programming</h4>
+        <div class="pill-row"><span class="pill">C</span><span class="pill">C++</span><span class="pill">Python</span><span class="pill">Java</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Core concepts</h4>
+        <div class="pill-row"><span class="pill">DSA</span><span class="pill">OOP</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Web technologies</h4>
+        <div class="pill-row"><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">React js</span><span class="pill">Node js</span><span class="pill">Express js</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Tools</h4>
+        <div class="pill-row"><span class="pill">VS Code</span><span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">Canva</span><span class="pill">Excel</span></div>
+      </div>
+    </div>
+
+    <div class="code-stats reveal" style="margin-top:28px;">
+      <div class="stat-card"><b>200+</b><span>LeetCode problems solved</span></div>
+      <div class="stat-card"><b>850+</b><span>Skill Rack problems solved</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-tag reveal">Projects</div>
+    <h2 class="section-title reveal">Things I've built</h2>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-year">2025</div>
+        <h3>ATM theft detection &amp; prevention</h3>
+        <p>Automated system using vibration sensors and NodeMCU that locks the ATM door on theft attempts, triggers alarms, and alerts authorities with live location and camera access — addressing gaps like missing guards and delayed police response.</p>
+        <div class="pill-row"><span class="pill">NodeMCU</span><span class="pill">IoT</span><span class="pill">Sensors</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-year">2024</div>
+        <h3>Trash Here</h3>
+        <p>A digital waste management app where users log waste type, request collection, and track disposal. Connects people to recycling/composting services and rewards eco-friendly action to make collection faster and more sustainable.</p>
+        <div class="pill-row"><span class="pill">Sustainability</span><span class="pill">App design</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-year">2024</div>
+        <h3>Gesture to Speech</h3>
+        <p>Converts hand gestures into audible speech using sensors/camera input, gesture-to-word mapping, and a text-to-speech engine — built to help people with speech or hearing disabilities communicate more easily.</p>
+        <div class="pill-row"><span class="pill">Accessibility</span><span class="pill">Prototype</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap two-col">
+    <div class="reveal">
+      <div class="section-tag">Achievements</div>
+      <h2 class="section-title">Competitions &amp; recognition</h2>
+      <div class="ach-list">
+        <div class="ach-item"><h4>1st place, Project Presentation — Freshathon</h4><span>2025</span></div>
+        <div class="ach-item"><h4>2nd place — Animate 2025</h4><span>2025</span></div>
+        <div class="ach-item"><h4>Participant — Asthra 2k25</h4><span>2025</span></div>
+        <div class="ach-item"><h4>2nd place, Web Hackathon — Createathon</h4><span>2024</span></div>
+        <div class="ach-item"><h4>Finalist, Selfie Hackathon (300+ teams)</h4><span>2024</span></div>
+        <div class="ach-item"><h4>3rd place, Paper Presentation — Mirai</h4><span>2024</span></div>
+        <div class="ach-item"><h4>2nd place, Odd-semester rank holder</h4><span>2024–2025</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-tag">Certifications</div>
+      <h2 class="section-title" style="font-size:26px;">Continuous learning</h2>
+      <div class="ach-list">
+        <div class="ach-item"><h4>Introduction to HTML — Sololearn</h4><span>2024</span></div>
+        <div class="ach-item"><h4>Mastering DSA — Udemy</h4><span>2025</span></div>
+        <div class="ach-item"><h4>Python for beginners — Infosys Springboard</h4><span>2025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact reveal">
+    <div class="section-tag" style="color:var(--gold);">Contact</div>
+    <h2 class="section-title">Let's build something together</h2>
+    <p>Open to internships, full time roles, and hackathon teams. Reach out — I reply fast.</p>
+    <div class="contact-links">
+      <a href="">Email: kanimozhi.e2024it@sece.ac.in</a>
+      <a href="tel:+919791163635">+91 97911 63635</a>
+      <a href="https://www.linkedin.com/in/kanimozhi-e-36aa79333" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Kanimozhi-E" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Kanimozhi E. Built with care.</footer>
+
+<script>
+  // typing animation
+  const phrases = ["Full Stack Developer","DSA enthusiast","Hackathon competitor","Problem solver"];
+  const el = document.getElementById('typed');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let pi=0, ci=0, deleting=false;
+  function tick(){
+    if(reduced){ el.textContent = phrases[0]; return; }
+    const word = phrases[pi];
+    el.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+    let speed = deleting ? 40 : 70;
+    if(!deleting && ci === word.length+1){ deleting = true; speed = 1200; }
+    else if(deleting && ci === 0){ deleting = false; pi = (pi+1)%phrases.length; speed = 300; }
+    setTimeout(tick, speed);
+  }
+  tick();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(elm=>io.observe(elm));
+</script>
+</body>
+</html>
